@@ -11,3 +11,12 @@ type Word {
 type Query {
   words: [Word!]!
 }
+
+type Mutation {
+  createWord(word: createWordInput!): Word!
+}
+
+input createWordInput {
+  text: String!
+  level: Float!
+}

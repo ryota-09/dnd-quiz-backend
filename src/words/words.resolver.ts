@@ -1,4 +1,5 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { createWordInput } from './dto/createWordInput.dto';
 import { Word } from './words.entity';
 import { WordsService } from './words.service';
 
@@ -9,5 +10,10 @@ export class WordsResolver {
   @Query(() => [Word], { name: 'words' })
   words(): Promise<Word[]> {
     return this.wordsService.findAll();
+  }
+
+  @Mutation(() => Word)
+  createWord(@Args('word') wordDto: createWordInput) {
+    return this.wordsService.createNewWord(wordDto);
   }
 }
