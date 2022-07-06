@@ -39,6 +39,8 @@ model User {
   password String
   img_path String
   /// @HideField({ input: true, output: true })
+  hashedRefreshToken String?
+  /// @HideField({ input: true, output: true })
   created_at DateTime @default(now())
   /// @HideField({ input: true, output: true })
   updated_at DateTime @updatedAt

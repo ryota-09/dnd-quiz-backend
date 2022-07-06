@@ -1,0 +1,47 @@
+// ログインのためのクエリ
+mutation {
+  login(
+    loginUserInput: {
+      email: "test02@gmail.com", 
+      password: "password"
+    }
+  ) {
+    user {
+      username,
+    	email
+    },
+    access_token
+  }
+}
+
+//ユーザーを作成するためのクエリ
+mutation {
+    createUser( user: { username: "Jon", email: "test02@gmail.com", password: "password" } ){
+        id
+        username
+        email
+        password
+    }
+}
+
+
+//一人のユーザーを取得するクエリ
+query {
+    oneUser( user: { email: "test02@gmail.com", password: "password" } ){
+        id
+        username
+        email
+        password
+        created_at
+    }
+}
+
+
+//ワードを追加するためのクエリ
+mutation {
+    createWord(word : { text: "ターコイズ", level: 5 }){
+        id
+        text
+        level
+    }
+}
