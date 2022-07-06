@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserInput } from './dto/createUserInput.dto';
 import { User } from '@prisma/client';
+import { LoginUserInput } from 'src/auth/dto/loginUserInput.dto';
 
 @Injectable()
 export class UsersService {
@@ -14,10 +15,10 @@ export class UsersService {
     return await this.prisma.user.findMany();
   }
 
-  async findUserById(userId: string): Promise<User> {
+  async findUserByEmail({ email }: LoginUserInput): Promise<User> {
     const targetUser = await this.prisma.user.findUnique({
       where: {
-        id: userId,
+        email: email,
       },
     });
     return targetUser;
