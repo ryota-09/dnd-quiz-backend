@@ -1,9 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport';
+import { Strategy } from 'passport-local';
 import { User } from '../../users/users.entity';
 import { AuthService } from '../auth.service';
-import { LoginUserInput } from '../dto/loginUserInput.dto';
 
 // strategyの後に名前が必要.
 
@@ -15,9 +14,12 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
       usernameField: 'email',
     });
   }
-
-  async validate(loginUserDto: LoginUserInput): Promise<User> {
-    const { isValid, user } = await this.authService.validateUser(loginUserDto);
+  // デフォルトはemailとpasswordで認証する。dtoにはできない。
+  async validate(email: string, password: string): Promise<User> {
+    const { isValid, user } = await this.authService.validateUser(
+      email,
+      password,
+    );
 
     if (!isValid) {
       throw new UnauthorizedException('パスワードが間違っています。');

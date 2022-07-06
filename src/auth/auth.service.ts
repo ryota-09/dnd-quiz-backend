@@ -14,9 +14,10 @@ export class AuthService {
     private readonly usersService: UsersService,
   ) {}
 
-  async validateUser(loginUserDto: LoginUserInput) {
-    const user = await this.usersService.findUserByEmail(loginUserDto);
-    const isValid = await bcrypt.compare(loginUserDto.password, user.password);
+  async validateUser(email: string, password: string) {
+    const userDto: LoginUserInput = { email: email, password: password };
+    const user = await this.usersService.findUserByEmail(userDto);
+    const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
       throw new UnauthorizedException('パスワードが間違っています！');
