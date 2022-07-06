@@ -26,6 +26,7 @@ scalar DateTime
 type Query {
   words: [Word!]!
   users: [User!]!
+  oneUser(userId: String!): User!
 }
 
 type Mutation {
