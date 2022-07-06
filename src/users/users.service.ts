@@ -10,6 +10,10 @@ import { User } from '@prisma/client';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findAllUsers(): Promise<User[]> {
+    return await this.prisma.user.findMany();
+  }
+
   async createNewUser({
     username,
     email,
@@ -29,7 +33,4 @@ export class UsersService {
     });
     return newUser;
   }
-  //   async findFirst(args: FindFirstUserArgs): Promise<User | null> {
-  //     return this.prisma.user.findFirst(args);
-  // }
 }
