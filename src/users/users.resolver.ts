@@ -13,7 +13,7 @@ export class UsersResolver {
   }
 
   @Mutation(() => User)
-  creteUser(@Args('user') userDto: CreateUserInput) {
+  createUser(@Args('user') userDto: CreateUserInput): Promise<User> {
     return this.userService.createNewUser(userDto);
   }
 }

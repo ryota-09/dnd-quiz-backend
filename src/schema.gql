@@ -8,15 +8,38 @@ type Word {
   level: Float!
 }
 
+type User {
+  id: String!
+  username: String!
+  email: String!
+  password: String!
+  img_path: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   words: [Word!]!
+  users: [User!]!
 }
 
 type Mutation {
   createWord(word: createWordInput!): Word!
+  createUser(user: CreateUserInput!): User!
 }
 
 input createWordInput {
   text: String!
   level: Float!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
 }

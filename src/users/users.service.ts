@@ -28,7 +28,7 @@ export class UsersService {
         password: await bcrypt.hash(password, salt),
         img_path: '',
         created_at: new Date(),
-        updated_at: null,
+        updated_at: new Date(),
       },
     });
     return newUser;
