@@ -8,6 +8,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { WordsModule } from './words/words.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+
 @Module({
   imports: [
     PrismaModule,
@@ -22,7 +23,6 @@ import { AuthModule } from './auth/auth.module';
     WordsModule,
     UsersModule,
     AuthModule,
-    // WordsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

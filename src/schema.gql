@@ -23,15 +23,26 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
 type Query {
   words: [Word!]!
   users: [User!]!
-  oneUser(userId: String!): User!
+  oneUser(user: LoginUserInput!): User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 type Mutation {
   createWord(word: createWordInput!): Word!
   createUser(user: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
 }
 
 input createWordInput {
