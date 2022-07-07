@@ -5,6 +5,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from '../../users/users.entity';
 import { UsersService } from '../../users/users.service';
 import { LoginUserInput } from '../dto/loginUserInput.dto';
+import { JwtPayload } from '../types/auth-types.type';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -15,10 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       secretOrKey: process.env.JWT_SECRET_KEY,
     });
   }
-  async validate(payload: {
-    email: string;
-    sub: string;
-  }): Promise<User | null> {
+  async validate(payload: JwtPayload): Promise<User | null> {
     const payloadInputDto: LoginUserInput = {
       email: payload.email,
       password: payload.sub,
