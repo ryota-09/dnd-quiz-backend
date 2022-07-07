@@ -7,6 +7,7 @@ import { User } from '../../users/users.entity';
 import { LoginUserInput } from '../dto/loginUserInput.dto';
 import { JwtPayload } from '../types/auth-types.type';
 
+@Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
   Strategy,
   'jwt-refresh',
@@ -19,9 +20,9 @@ export class JwtRefreshStrategy extends PassportStrategy(
     });
   }
 
-  async validate(payload: JwtPayload): Promise<User | null> {
+  async validate(jwtPayload: JwtPayload): Promise<User | null> {
     const loginUserInput: LoginUserInput = {
-      email: payload.email,
+      email: jwtPayload.email,
       password: '',
     };
     const user = this.usersService.findUserByEmail(loginUserInput);

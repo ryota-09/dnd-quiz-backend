@@ -16,10 +16,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       secretOrKey: process.env.JWT_SECRET_KEY,
     });
   }
-  async validate(payload: JwtPayload): Promise<User | null> {
+  async validate(email: string, password: string): Promise<User | null> {
     const payloadInputDto: LoginUserInput = {
-      email: payload.email,
-      password: payload.sub,
+      email: email,
+      password: password,
     };
     return this.userService.findUserByEmail(payloadInputDto);
   }

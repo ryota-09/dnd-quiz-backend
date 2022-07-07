@@ -25,6 +25,7 @@ scalar DateTime
 
 type LoginResponse {
   access_token: String!
+  refresh_token: String!
   user: User!
 }
 
@@ -43,6 +44,8 @@ type Mutation {
   createWord(word: createWordInput!): Word!
   createUser(user: CreateUserInput!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
+  refreshToken: LoginResponse!
+  logout: Boolean!
 }
 
 input createWordInput {

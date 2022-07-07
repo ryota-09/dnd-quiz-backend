@@ -45,3 +45,15 @@ mutation {
         level
     }
 }
+
+//リフレッシュトークンの更新
+mutation {
+  refreshToken {
+    user {
+      username,
+    	email
+    },
+    access_token,
+    refresh_token
+  }
+}
