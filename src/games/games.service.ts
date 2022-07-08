@@ -13,6 +13,15 @@ export class GamesService {
     return await this.prisma.game.findMany();
   }
 
+  async findGamesByUserId(userId: string): Promise<Game[]> {
+    const targetGames: Game[] = await this.prisma.game.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+    return targetGames;
+  }
+
   async createNewGame(createGameInputDto: CreateGameInput): Promise<Game> {
     const newGame = await this.prisma.game.create({
       data: {

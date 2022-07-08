@@ -12,7 +12,12 @@ export class GamesResolver {
     return this.gamesService.findAllGames();
   }
 
-  @Mutation(() => Game)
+  @Query(() => [Game], { name: 'getGameListByUerId' })
+  getGameListByUserId(@Args('userId') userId: string): Promise<Game[]> {
+    return this.gamesService.findGamesByUserId(userId);
+  }
+
+  @Mutation(() => Game, { name: 'createGame' })
   createGame(
     @Args('gameInput') createGameInputDto: CreateGameInput,
   ): Promise<Game> {

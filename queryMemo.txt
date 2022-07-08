@@ -44,6 +44,20 @@ query {
   }
 }
 
+
+//特定のユーザーのゲームの記録を取得するクエリ
+query {
+    getGameListByUerId(userId : "81b25a8f-2458-4df8-a1a9-4de2bcd105bf"){
+        id
+        user_id
+        total_point
+        trial_time
+        correct_count
+        vocabulary_point
+        created_at
+    }
+}
+
 //ゲームの記録を作成するクエリ
 mutation {
     createGame (gameInput : { user_id: "81b25a8f-2458-4df8-a1a9-4de2bcd105bf", trial_time: 40, correct_count: 3, vocabulary_point: 12, total_point: 50 }){
