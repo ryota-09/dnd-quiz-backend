@@ -29,10 +29,21 @@ type LoginResponse {
   user: User!
 }
 
+type Game {
+  id: String!
+  user_id: String!
+  trial_time: Float!
+  correct_count: Float!
+  vocabulary_point: Float!
+  total_point: Float!
+  created_at: DateTime!
+}
+
 type Query {
   words: [Word!]!
   users: [User!]!
   oneUser(user: LoginUserInput!): User!
+  games: [Game!]!
 }
 
 input LoginUserInput {
@@ -46,6 +57,7 @@ type Mutation {
   login(loginUserInput: LoginUserInput!): LoginResponse!
   refreshToken: LoginResponse!
   logout: Boolean!
+  createGame(gameInput: CreateGameInput!): Game!
 }
 
 input createWordInput {
@@ -57,4 +69,12 @@ input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input CreateGameInput {
+  user_id: String!
+  trial_time: Float!
+  correct_count: Float!
+  vocabulary_point: Float!
+  total_point: Float!
 }

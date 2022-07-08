@@ -13,15 +13,15 @@ export class GamesService {
     return await this.prisma.game.findMany();
   }
 
-  async createNewGame(createGameInput: CreateGameInput): Promise<Game> {
+  async createNewGame(createGameInputDto: CreateGameInput): Promise<Game> {
     const newGame = await this.prisma.game.create({
       data: {
         id: uuid(),
-        user_id: createGameInput.user_id,
-        trial_time: createGameInput.trial_time,
-        correct_count: createGameInput.correct_count,
-        vocabulary_point: createGameInput.vocabulary_point,
-        total_point: createGameInput.total_point,
+        user_id: createGameInputDto.user_id,
+        trial_time: createGameInputDto.trial_time,
+        correct_count: createGameInputDto.correct_count,
+        vocabulary_point: createGameInputDto.vocabulary_point,
+        total_point: createGameInputDto.total_point,
         created_at: new Date(),
       },
     });

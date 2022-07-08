@@ -36,6 +36,26 @@ query {
     }
 }
 
+//全てのゲーム記録を取得するクエリ
+query {
+  games {
+    id
+    user_id
+  }
+}
+
+//ゲームの記録を作成するクエリ
+mutation {
+    createGame (gameInput : { user_id: "81b25a8f-2458-4df8-a1a9-4de2bcd105bf", trial_time: 40, correct_count: 3, vocabulary_point: 12, total_point: 50 }){
+        id
+        user_id
+        trial_time
+        correct_count
+        vocabulary_point
+        total_point
+    }
+}
+
 
 //ワードを追加するためのクエリ
 mutation {
