@@ -28,4 +28,9 @@ export class GamesResolver {
   ): Promise<Game> {
     return this.gamesService.createNewGame(createGameInputDto);
   }
+
+  @Mutation(() => Boolean, { name: 'deleteGamesByUserId' })
+  deleteGamesByUserId(@Args('userId') userId: string): Promise<boolean> {
+    return this.gamesService.deleteGamesByUserId(userId);
+  }
 }

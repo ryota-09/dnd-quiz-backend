@@ -52,4 +52,13 @@ export class GamesService {
     });
     return newGame;
   }
+
+  async deleteGamesByUserId(userId: string) {
+    await this.prisma.game.deleteMany({
+      where: {
+        user_id: userId,
+      },
+    });
+    return true;
+  }
 }
