@@ -44,6 +44,14 @@ query {
   }
 }
 
+//総合点トップ３を取得するクエリ
+query {
+    getGamesTopThree {
+        id
+        user_id
+        total_point
+    }
+}
 
 //特定のユーザーのゲームの記録を取得するクエリ
 query {
@@ -67,6 +75,7 @@ mutation {
         correct_count
         vocabulary_point
         total_point
+        created_at
     }
 }
 

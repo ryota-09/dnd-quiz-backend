@@ -12,6 +12,11 @@ export class GamesResolver {
     return this.gamesService.findAllGames();
   }
 
+  @Query(() => [Game], { name: 'getGamesTopThree' })
+  getGamesTopThree(): Promise<Game[]> {
+    return this.gamesService.findGamesTopThree();
+  }
+
   @Query(() => [Game], { name: 'getGameListByUerId' })
   getGameListByUserId(@Args('userId') userId: string): Promise<Game[]> {
     return this.gamesService.findGamesByUserId(userId);

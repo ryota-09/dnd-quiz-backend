@@ -10,13 +10,29 @@ export class GamesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAllGames(): Promise<Game[]> {
-    return await this.prisma.game.findMany();
+    return await this.prisma.game.findMany({
+      orderBy: {
+        total_point: 'desc',
+      },
+    });
+  }
+
+  async findGamesTopThree(): Promise<Game[]> {
+    return await this.prisma.game.findMany({
+      orderBy: {
+        total_point: 'desc',
+      },
+      take: 3,
+    });
   }
 
   async findGamesByUserId(userId: string): Promise<Game[]> {
     const targetGames: Game[] = await this.prisma.game.findMany({
       where: {
         user_id: userId,
+      },
+      orderBy: {
+        created_at: 'desc',
       },
     });
     return targetGames;
