@@ -7,7 +7,7 @@ import { UsersService } from '../users/users.service';
 import { User } from 'src/users/users.entity';
 import { User as PrismaUser } from '@prisma/client';
 import { LoginResponse } from './dto/loginResponse.dto';
-import { JwtPayload, Tokens } from './types/auth-types.type';
+import { Tokens } from './types/auth-types.type';
 
 @Injectable()
 export class AuthService {
@@ -16,10 +16,9 @@ export class AuthService {
     private readonly usersService: UsersService,
   ) {}
 
-  async validateUser(email: string, password: string) {
-    const userDto: LoginUserInput = { email: email, password: password };
-    const user = await this.usersService.findUserByEmail(userDto);
-    const isValid = await bcrypt.compare(password, user.password);
+  async validateUser(loginUserDto: LoginUserInput) {
+    const user = await this.usersService.findUserByEmail(loginUserDto);
+    const isValid = await bcrypt.compare(loginUserDto.password, user.password);
 
     if (!isValid) {
       throw new UnauthorizedException('パスワードが間違っています！');

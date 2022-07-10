@@ -16,11 +16,9 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     });
   }
   // デフォルトはemailとpasswordで認証する。
-  async validate(payload: LoginUserInput): Promise<User> {
-    const { isValid, user } = await this.authService.validateUser(
-      payload.email,
-      payload.password,
-    );
+  async validate(email: string, password: string): Promise<User> {
+    const payload: LoginUserInput = { email: email, password: password };
+    const { isValid, user } = await this.authService.validateUser(payload);
 
     if (!isValid) {
       throw new UnauthorizedException('パスワードが間違っています。');
