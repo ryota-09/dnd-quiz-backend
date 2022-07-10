@@ -5,7 +5,6 @@ import { UsersService } from 'src/users/users.service';
 
 import { User } from '../../users/users.entity';
 import { LoginUserInput } from '../dto/loginUserInput.dto';
-import { JwtPayload } from '../types/auth-types.type';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
@@ -20,12 +19,8 @@ export class JwtRefreshStrategy extends PassportStrategy(
     });
   }
 
-  async validate(jwtPayload: JwtPayload): Promise<User | null> {
-    const loginUserInput: LoginUserInput = {
-      email: jwtPayload.email,
-      password: '',
-    };
-    const user = this.usersService.findUserByEmail(loginUserInput);
+  async validate(payload: LoginUserInput): Promise<User | null> {
+    const user = this.usersService.findUserByEmail(payload);
 
     if (!user) {
       throw new UnauthorizedException('ストラテジー内のエラー');

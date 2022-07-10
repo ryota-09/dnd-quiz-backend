@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { User } from '../../users/users.entity';
 import { AuthService } from '../auth.service';
+import { LoginUserInput } from '../dto/loginUserInput.dto';
 
 // strategyの後に名前が必要.
 
@@ -14,11 +15,11 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
       usernameField: 'email',
     });
   }
-  // デフォルトはemailとpasswordで認証する。dtoにはできない。
-  async validate(email: string, password: string): Promise<User> {
+  // デフォルトはemailとpasswordで認証する。
+  async validate(payload: LoginUserInput): Promise<User> {
     const { isValid, user } = await this.authService.validateUser(
-      email,
-      password,
+      payload.email,
+      payload.password,
     );
 
     if (!isValid) {

@@ -15,10 +15,10 @@ export class UsersService {
     return await this.prisma.user.findMany();
   }
 
-  async findUserByEmail({ email }: LoginUserInput): Promise<User> {
+  async findUserByEmail(loginUser: LoginUserInput): Promise<User> {
     const targetUser = await this.prisma.user.findUnique({
       where: {
-        email: email,
+        email: loginUser.email,
       },
     });
     return targetUser;
