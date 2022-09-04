@@ -43,6 +43,7 @@ type Query {
   words: [Word!]!
   users: [User!]!
   oneUser(user: LoginUserInput!): User!
+  oneUserById(userId: String!): User!
   games: [Game!]!
   getGamesTopThree: [Game!]!
   getGameListByUerId(userId: String!): [Game!]!

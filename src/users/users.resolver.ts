@@ -22,6 +22,12 @@ export class UsersResolver {
     return this.userService.findUserByEmail(loginUserDto);
   }
 
+  @Query(() => User, { name: 'oneUserById' })
+  @UseGuards(JwtAuthGuard)
+  oneUserById(@Args('userId') userId: string): Promise<User> {
+    return this.userService.getUserById(userId);
+  }
+
   @Mutation(() => User)
   createUser(@Args('user') userDto: CreateUserInput): Promise<User> {
     return this.userService.createNewUser(userDto);

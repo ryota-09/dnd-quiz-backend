@@ -25,6 +25,24 @@ mutation {
     }
 }
 
+//全てのユーザーを取得するクエリ
+query {
+    users {
+        id
+        username
+        img_path
+    }
+}
+
+//一人のユーザーを取得するクエリ
+query {
+    oneUserById(userId: "fcaf3228-649f-4da2-9e54-7214917b92a3"){
+        id
+        username
+        email
+    }
+}
+
 
 //一人のユーザーを取得するクエリ
 query {
@@ -104,6 +122,7 @@ mutation {
 
 
 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QwMkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRXSHpNcnpoUXNIamo0ZG44OXBNVU9lOXNXQWtrZU9TamJwSXZFd2UvNHRXZ2ZkU2wxSUpQdSIsImlhdCI6MTY1NzQzODM2MywiZXhwIjoxNjU3NDM5MjYzfQ.k5O6IZNo63AY5ErpXQozI7Qy76srquSRL5vuvutoH48
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QwMkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRXSHpNcnpoUXNIamo0ZG44OXBNVU9lOXNXQWtrZU9TamJwSXZFd2UvNHRXZ2ZkU2wxSUpQdSIsImlhdCI6MTY1NzcxMDIxMiwiZXhwIjoxNjU3NzExMTEyfQ.TPImbKwv56LgUsDcktBLPtpem2k2UkpWqCTWl5lVR4A
 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QwMkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRXSHpNcnpoUXNIamo0ZG44OXBNVU9lOXNXQWtrZU9TamJwSXZFd2UvNHRXZ2ZkU2wxSUpQdSIsImlhdCI6MTY1NzQzODM2MywiZXhwIjoxNjU4MDQzMTYzfQ.JSrRpt9rH1toHg-r1kblbDeLtNo71m_EteRc3mtJ_sY
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QwMkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRXSHpNcnpoUXNIamo0ZG44OXBNVU9lOXNXQWtrZU9TamJwSXZFd2UvNHRXZ2ZkU2wxSUpQdSIsImlhdCI6MTY1NzcxMDIxMiwiZXhwIjoxNjU4MzE1MDEyfQ.miwjm3QXaGVkJQnMu3zB4Q4FL0joiCahb4LJWyIzuoA

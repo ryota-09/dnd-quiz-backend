@@ -59,10 +59,7 @@ export class AuthService {
     };
   }
 
-  async updateHashedRefreshToken(
-    user: User,
-    refreshToken: string,
-  ): Promise<void> {
+  async updateHashedRefreshToken(user: User, refreshToken: string) {
     const prismaUser: PrismaUser = {
       ...user,
       hashedRefreshToken: refreshToken,
@@ -70,10 +67,11 @@ export class AuthService {
     };
     const salt = await bcrypt.genSalt();
     const hashedRefreshToken = await bcrypt.hash(refreshToken, salt);
-    await this.usersService.updateUserRefreshToken(
+    const updatedUser = await this.usersService.updateUserRefreshToken(
       prismaUser,
       hashedRefreshToken,
     );
+    return updatedUser;
   }
 
   async refreshToken(
@@ -86,10 +84,13 @@ export class AuthService {
       throw new UnauthorizedException('リフレッシュトークンエラー');
     }
     const tokens = await this.getTokens(user);
-    await this.updateHashedRefreshToken(user, tokens.refresh_token);
+    const updatedUser = await this.updateHashedRefreshToken(
+      user,
+      tokens.refresh_token,
+    );
     return {
       ...tokens,
-      user: user,
+      user: updatedUser,
     };
   }
 
